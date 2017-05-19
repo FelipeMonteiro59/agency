@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.41967871485943775" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="1000.0" prefWidth="700.0" style="-fx-border-color: #F5F5F5;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="agency.ui.TelaCadGrupoController">
+   <items>
+      <VBox prefHeight="490.0" prefWidth="696.0">
+         <children>
+            <HBox alignment="CENTER" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="646.0" spacing="15.0" style="-fx-background-color: white;">
+               <children>
+                  <Button fx:id="btnovo" mnemonicParsing="false" onAction="#clkNovo" prefHeight="30.0" prefWidth="90.0" text="Novo" />
+                  <Button fx:id="btalterar" layoutX="288.0" layoutY="17.0" mnemonicParsing="false" onAction="#clkAlterar" prefHeight="30.0" prefWidth="90.0" text="Alterar" />
+                  <Button fx:id="btapagar" layoutX="333.0" layoutY="17.0" mnemonicParsing="false" onAction="#clkApagar" prefHeight="30.0" prefWidth="90.0" text="Apagar" />
+                  <Button fx:id="btconfirmar" layoutX="378.0" layoutY="17.0" mnemonicParsing="false" onAction="#clkConfirmar" prefHeight="30.0" prefWidth="90.0" text="Confirmar" />
+                  <Button fx:id="btcancelar" layoutX="423.0" layoutY="17.0" mnemonicParsing="false" onAction="#clkCancelar" prefHeight="30.0" prefWidth="90.0" text="Cancelar" />
+               </children>
+            </HBox>
+            <AnchorPane fx:id="pndados" minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="696.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="9.0" text="Código">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txcodigo" layoutX="14.0" layoutY="29.0" prefHeight="25.0" prefWidth="71.0" />
+                  <Label layoutX="376.0" layoutY="7.0" text="Gênero">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txgenero" layoutX="376.0" layoutY="28.0" prefHeight="25.0" prefWidth="181.0" />
+                  <Label layoutX="97.0" layoutY="9.0" text="Nome">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txnome" layoutX="97.0" layoutY="29.0" prefHeight="25.0" prefWidth="268.0" />
+                  <Label layoutX="221.0" layoutY="63.0" text="Banco">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txbanco" layoutX="221.0" layoutY="83.0" prefHeight="25.0" prefWidth="181.0" />
+                  <Label layoutX="413.0" layoutY="63.0" text="Agência">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txagencia" layoutX="413.0" layoutY="83.0" prefHeight="25.0" prefWidth="268.0" />
+                  <Label layoutX="14.0" layoutY="117.0" text="Conta">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txconta" layoutX="14.0" layoutY="137.0" prefHeight="25.0" prefWidth="106.0" />
+                  <Label layoutX="162.0" layoutY="117.0" text="Titular">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txltitular" layoutX="161.0" layoutY="137.0" prefHeight="25.0" prefWidth="310.0" />
+                  <Label layoutX="14.0" layoutY="62.0" text="Cachê mínimo">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txcache" layoutX="14.0" layoutY="83.0" prefHeight="25.0" prefWidth="181.0" />
+                  <Label layoutX="13.0" layoutY="173.0" text="Integrantes">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btadd" layoutX="94.0" layoutY="171.0" mnemonicParsing="false" text="Add" />
+                  <Button fx:id="btdel" layoutX="156.0" layoutY="171.0" mnemonicParsing="false" text="Del" />
+                  <TableView fx:id="tvintegrantes" layoutX="13.0" layoutY="201.0" prefHeight="161.0" prefWidth="681.0">
+                    <columns>
+                      <TableColumn fx:id="tcinome" prefWidth="75.0" text="Nome" />
+                      <TableColumn fx:id="tcicpf" prefWidth="75.0" text="CPF" />
+                        <TableColumn fx:id="tcirg" prefWidth="75.0" text="RG" />
+                        <TableColumn fx:id="tcitelefone" prefWidth="75.0" text="Telefone" />
+                        <TableColumn fx:id="tciemail" prefWidth="75.0" text="E-mail" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox fx:id="pnpesquisa" prefHeight="366.0" prefWidth="696.0">
+         <children>
+            <FlowPane alignment="CENTER" prefHeight="63.0" prefWidth="679.0">
+               <children>
+                  <TextField fx:id="txbusca" prefHeight="25.0" prefWidth="279.0" />
+                  <Button fx:id="btbuscar" mnemonicParsing="false" onAction="#clkBuscar" text="Buscar">
+                     <FlowPane.margin>
+                        <Insets left="10.0" />
+                     </FlowPane.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </FlowPane>
+            <TableView fx:id="tabela" onMouseClicked="#clkTabela" prefHeight="382.0" prefWidth="696.0">
+               <columns>
+                  <TableColumn fx:id="tccodigo" prefWidth="66.0" text="Codigo" />
+                  <TableColumn fx:id="tcnome" prefWidth="257.0" text="Nome" />
+                  <TableColumn fx:id="tcgenero" prefWidth="111.0" text="Gênero" />
+                  <TableColumn fx:id="tccache" prefWidth="174.0" text="Cachê" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </items>
+</SplitPane>

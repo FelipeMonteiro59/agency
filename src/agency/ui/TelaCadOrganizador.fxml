@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.41967871485943775" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="1000.0" prefWidth="700.0" style="-fx-border-color: #F5F5F5;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="agency.ui.TelaCadOrganizadorController">
+    <items>
+        <VBox prefHeight="490.0" prefWidth="696.0">
+            <children>
+                <HBox alignment="CENTER" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="646.0" spacing="15.0" style="-fx-background-color: white;">
+                    <children>
+                        <Button fx:id="btnovo" mnemonicParsing="false" onAction="#clkNovo" prefHeight="30.0" prefWidth="90.0" text="Novo" />
+                        <Button fx:id="btalterar" layoutX="288.0" layoutY="17.0" mnemonicParsing="false" onAction="#clkAlterar" prefHeight="30.0" prefWidth="90.0" text="Alterar" />
+                        <Button fx:id="btapagar" layoutX="333.0" layoutY="17.0" mnemonicParsing="false" onAction="#clkApagar" prefHeight="30.0" prefWidth="90.0" text="Apagar" />
+                        <Button fx:id="btconfirmar" layoutX="378.0" layoutY="17.0" mnemonicParsing="false" onAction="#clkConfirmar" prefHeight="30.0" prefWidth="90.0" text="Confirmar" />
+                        <Button fx:id="btcancelar" layoutX="423.0" layoutY="17.0" mnemonicParsing="false" onAction="#clkCancelar" prefHeight="30.0" prefWidth="90.0" text="Cancelar" />
+                    </children>
+                </HBox>
+                <AnchorPane fx:id="pndados" minHeight="0.0" minWidth="0.0" prefHeight="326.0" prefWidth="696.0">
+                    <children>
+                        <Label layoutX="5.0" layoutY="5.0" text="Código">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txcodigo" layoutX="5.0" layoutY="25.0" prefHeight="25.0" prefWidth="71.0" />
+                        <Label layoutX="5.0" layoutY="58.0" text="CPF">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txcpf" layoutX="5.0" layoutY="79.0" prefHeight="25.0" prefWidth="181.0" />
+                        <Label layoutX="97.0" layoutY="5.0" text="Nome">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txnome" layoutX="97.0" layoutY="25.0" prefHeight="25.0" prefWidth="268.0" />
+                        <Label layoutX="376.0" layoutY="58.0" text="Telefone">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtelefone" layoutX="376.0" layoutY="78.0" prefHeight="25.0" prefWidth="181.0" />
+                        <Label layoutX="413.0" layoutY="114.0" text="E-mail">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txemail" layoutX="413.0" layoutY="134.0" prefHeight="25.0" prefWidth="268.0" />
+                        <Label layoutX="5.0" layoutY="168.0" text="CEP">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txcep" layoutX="5.0" layoutY="188.0" prefHeight="25.0" prefWidth="106.0" />
+                        <Button layoutX="119.0" layoutY="188.0" mnemonicParsing="false" onAction="#evtCep" prefHeight="25.0" prefWidth="30.0" style="-fx-background-image: url('siseventos/ui/util/lupa.png'); -fx-background-repeat: no-repeat; -fx-background-position: center;" />
+                        <Label layoutX="162.0" layoutY="168.0" text="Logradouro">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txlogradouro" layoutX="161.0" layoutY="188.0" prefHeight="25.0" prefWidth="310.0" />
+                        <Label layoutX="5.0" layoutY="222.0" text="Bairro">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txbairro" layoutX="5.0" layoutY="242.0" prefHeight="25.0" prefWidth="241.0" />
+                        <Label layoutX="290.0" layoutY="222.0" text="UF">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <ComboBox fx:id="cbuf" layoutX="292.0" layoutY="242.0" prefHeight="25.0" prefWidth="82.0" />
+                        <Label layoutX="415.0" layoutY="222.0" text="Cidade">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <ComboBox fx:id="cbcidade" layoutX="415.0" layoutY="242.0" prefHeight="25.0" prefWidth="260.0" />
+                        <Label layoutX="481.0" layoutY="168.0" text="Número">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txnumero" layoutX="481.0" layoutY="188.0" prefHeight="25.0" prefWidth="106.0" />
+                        <Label layoutX="190.0" layoutY="58.0" text="RG">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txrg" layoutX="190.0" layoutY="79.0" prefHeight="25.0" prefWidth="181.0" />
+                        <HBox alignment="CENTER" layoutX="380.0" layoutY="25.0" prefHeight="25.0" prefWidth="121.0" spacing="10.0">
+                            <children>
+                                <RadioButton mnemonicParsing="false" text="Física" />
+                                <RadioButton mnemonicParsing="false" text="Jurídica" />
+                            </children>
+                        </HBox>
+                        <Label layoutX="380.0" layoutY="5.0" text="Pessoa">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+        <VBox fx:id="pnpesquisa" prefHeight="366.0" prefWidth="696.0">
+            <children>
+                <FlowPane alignment="CENTER" prefHeight="63.0" prefWidth="679.0">
+                    <children>
+                        <TextField fx:id="txbusca" prefHeight="25.0" prefWidth="279.0" />
+                        <Button fx:id="btbuscar" mnemonicParsing="false" onAction="#clkBuscar" text="Buscar">
+                            <FlowPane.margin>
+                                <Insets left="10.0" />
+                            </FlowPane.margin>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </FlowPane>
+                <TableView fx:id="tabela" onMouseClicked="#clkTabela" prefHeight="382.0" prefWidth="696.0">
+                    <columns>
+                        <TableColumn fx:id="tccodigo" prefWidth="66.0" text="Codigo" />
+                        <TableColumn fx:id="tcnome" prefWidth="257.0" text="Nome" />
+                        <TableColumn fx:id="tccpf" prefWidth="111.0" text="CPF/CNPJ" />
+                        <TableColumn fx:id="tctelefone" prefWidth="174.0" text="Telefone" />
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+    </items>
+</SplitPane>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefWidth="497.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="agency.ui.TelaEmpresaParametrizadaController">
+   <children>
+      <Label text="Parametrização da empresa:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <HBox>
+         <children>
+            <VBox minWidth="300.0" prefHeight="420.0" prefWidth="0.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <Label fx:id="lbnome" text="Nome:" />
+                        <TextField fx:id="tfnome" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label fx:id="lbrazao" text="Razão Social:" />
+                        <TextField fx:id="tfrazao" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label fx:id="lbcnpj" text="CNPJ:" />
+                        <TextField fx:id="tfcnpj" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label fx:id="lbtelefone" text="Telefone:" />
+                        <TextField fx:id="tftelefone" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label fx:id="lbemail" text="E-mail:" />
+                        <TextField fx:id="tfemail" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label fx:id="lbendereco" text="Endereço:" />
+                        <TextField fx:id="tfendereco" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label fx:id="lbbairro" text="Bairro:" />
+                        <TextField fx:id="tfbairro" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label fx:id="lbcep" text="CEP:" />
+                        <HBox>
+                           <children>
+                              <TextField fx:id="tfcep" />
+                              <Button fx:id="btbuscar" mnemonicParsing="false" text="Buscar" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="tfcidade">
+                     <children>
+                        <Label fx:id="lbcidade" text="Cidade:" />
+                        <TextField />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label fx:id="lbuf" text="UF:" />
+                        <ChoiceBox fx:id="cbuf" prefHeight="25.0" prefWidth="94.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" minWidth="200.0">
+               <children>
+                  <ImageView fx:id="imgview" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="btimagem" mnemonicParsing="false" text="Imagem" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" spacing="10.0">
+         <children>
+            <Button fx:id="btconfirmar" mnemonicParsing="false" text="Confirmar" />
+            <Button fx:id="btcancelar" mnemonicParsing="false" text="Cancelar" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

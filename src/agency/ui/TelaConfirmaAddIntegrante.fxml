@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<FlowPane prefHeight="460.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="agency.ui.TelaConfirmaAddIntegranteController">
+    <children>
+        <VBox prefHeight="490.0" prefWidth="696.0">
+            <children>
+                <HBox alignment="CENTER" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="646.0" spacing="15.0" style="-fx-background-color: white;">
+                    <children>
+                        <Button fx:id="btconfirmar" layoutX="378.0" layoutY="17.0" mnemonicParsing="false" onAction="#clkConfirmar" prefHeight="30.0" prefWidth="90.0" text="Confirmar" />
+                        <Button fx:id="btcancelar" layoutX="423.0" layoutY="17.0" mnemonicParsing="false" onAction="#clkCancelar" prefHeight="30.0" prefWidth="90.0" text="Cancelar" />
+                    </children>
+                </HBox>
+                <Separator prefWidth="200.0" />
+                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                    <children>
+                        <Label text="Cachê no evento:">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txcodigo1" prefHeight="25.0" prefWidth="71.0" />
+                        <Label text="Hora inicio:">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="80.0" spacing="5.0">
+                            <children>
+                                <TextField fx:id="txhrini" prefHeight="25.0" prefWidth="30.0" />
+                                <Label text=":">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="txminini" prefHeight="25.0" prefWidth="30.0" />
+                            </children>
+                        </HBox>
+                        <Label text="Hora fim:">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="80.0" spacing="5.0">
+                            <children>
+                                <TextField fx:id="txhrfim" prefHeight="25.0" prefWidth="30.0" />
+                                <Label text=":">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="txminfim" prefHeight="25.0" prefWidth="30.0" />
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+                <Separator prefWidth="200.0" />
+                <AnchorPane fx:id="pndados" minHeight="0.0" minWidth="0.0" prefHeight="387.0" prefWidth="696.0">
+                    <children>
+                        <Label layoutX="5.0" layoutY="5.0" text="Código">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txcodigo" editable="false" layoutX="5.0" layoutY="25.0" prefHeight="25.0" prefWidth="71.0" />
+                        <Label layoutX="376.0" layoutY="5.0" text="Gênero">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txgenero" editable="false" layoutX="376.0" layoutY="25.0" prefHeight="25.0" prefWidth="181.0" />
+                        <Label layoutX="97.0" layoutY="5.0" text="Nome">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txnome" editable="false" layoutX="97.0" layoutY="25.0" prefHeight="25.0" prefWidth="268.0" />
+                        <Label layoutX="221.0" layoutY="50.0" text="Banco">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txbanco" editable="false" layoutX="221.0" layoutY="70.0" prefHeight="25.0" prefWidth="181.0" />
+                        <Label layoutX="413.0" layoutY="50.0" text="Agência">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txagencia" editable="false" layoutX="413.0" layoutY="70.0" prefHeight="25.0" prefWidth="268.0" />
+                        <Label layoutX="5.0" layoutY="95.0" text="Conta">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txconta" editable="false" layoutX="5.0" layoutY="115.0" prefHeight="25.0" prefWidth="106.0" />
+                        <Label layoutX="162.0" layoutY="95.0" text="Titular">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txltitular" editable="false" layoutX="161.0" layoutY="115.0" prefHeight="25.0" prefWidth="310.0" />
+                        <Label layoutX="5.0" layoutY="50.0" text="Cachê mínimo">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txcache" editable="false" layoutX="5.0" layoutY="70.0" prefHeight="25.0" prefWidth="181.0" />
+                        <Label layoutX="5.0" layoutY="140.0" text="Integrantes">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TableView fx:id="tvintegrantes" layoutX="5.0" layoutY="160.0" prefHeight="221.0" prefWidth="686.0">
+                            <columns>
+                                <TableColumn fx:id="tcinome" prefWidth="189.0" text="Nome" />
+                                <TableColumn fx:id="tcicpf" prefWidth="100.0" text="CPF" />
+                                <TableColumn fx:id="tcirg" prefWidth="104.0" text="RG" />
+                                <TableColumn fx:id="tcitelefone" prefWidth="97.0" text="Telefone" />
+                                <TableColumn fx:id="tciemail" prefWidth="195.0" text="E-mail" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+    </children>
+</FlowPane>
