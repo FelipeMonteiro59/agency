@@ -6,6 +6,7 @@ import agency.ui.util.Acesso;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,7 +47,8 @@ public class TelaLoginController implements Initializable {
             Acesso.setPermissao(-1);
         }
     }
-
+    
+    //<editor-fold defaultstate="collapsed" desc="States">
     private void estadoInicial() {
         lbverilogin.setVisible(false);
         lbverisenha.setVisible(false);
@@ -54,7 +56,7 @@ public class TelaLoginController implements Initializable {
         tflogin.setStyle("-fx-border-width: 0;");
         tfsenha.setStyle("-fx-border-width: 0;");
     }
-
+    
     private void estadoLoginInvalido() {
         lbverilogin.setVisible(true);
         tflogin.setStyle("-fx-text-box-border: red;");
@@ -64,6 +66,7 @@ public class TelaLoginController implements Initializable {
         lbverisenha.setVisible(true);
         tfsenha.setStyle("-fx-text-box-border: red;");
     }
+    //</editor-fold>
 
     private boolean verifica() {
         //verificacões
@@ -88,7 +91,7 @@ public class TelaLoginController implements Initializable {
                 return false;
         }
     }
-
+    
     @FXML
     private void clkEntrar(ActionEvent event) {
         if (verifica()) {
@@ -97,6 +100,7 @@ public class TelaLoginController implements Initializable {
             if (Acesso.getPermissao() == -1) {
                 JOptionPane.showMessageDialog(null, "Fazer Cadastro de novo usuário.");
                 try {
+                    Platform.exit();
                     Stage palco = new Stage();
                     palco.setScene(new Scene(FXMLLoader.load(getClass().getResource("TelaCadUsuario.fxml"))));
                     //palco.initModality(Modality.APPLICATION_MODAL);

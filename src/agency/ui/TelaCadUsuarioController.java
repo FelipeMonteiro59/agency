@@ -86,6 +86,8 @@ public class TelaCadUsuarioController implements Initializable {
     private TableColumn<?, ?> tcCpf;
     @FXML
     private TextField tfcod;
+    @FXML
+    private VBox vboxdados;
 
 //</editor-fold>
     @Override
@@ -115,6 +117,9 @@ public class TelaCadUsuarioController implements Initializable {
 
     private void estadoInicial() {
         if (Acesso.getPermissao() == -1) {
+            //textfields
+            vboxdados.setDisable(true);
+            
             //botões
             btalterar.setDisable(true);
             btapagar.setDisable(true);

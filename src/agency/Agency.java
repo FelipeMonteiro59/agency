@@ -16,7 +16,7 @@ public class Agency extends Application {
 //        Parent root = FXMLLoader.load(getClass().getResource("ui/TelaCadArtista.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("ui/TelaCadEvento.fxml"));
 /*99%*/        Parent root = FXMLLoader.load(getClass().getResource("ui/TelaLogin.fxml"));
-//          Parent root = FXMLLoader.load(getClass().getResource("ui/TelaCadUsuario.fxml"));
+/*80%*/// Parent root = FXMLLoader.load(getClass().getResource("ui/TelaCadUsuario.fxml"));
 
 
         Scene scene = new Scene(root);
