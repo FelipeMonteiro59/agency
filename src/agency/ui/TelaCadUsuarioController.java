@@ -1,11 +1,14 @@
 package agency.ui;
 
 import agency.controllers.CtrUsuario;
+import agency.entity.Usuario;
 import agency.ui.util.Acesso;
 import agency.ui.util.Carregadores;
 import agency.ui.util.MaskFieldUtil;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javax.swing.JOptionPane;
 
@@ -73,17 +77,17 @@ public class TelaCadUsuarioController implements Initializable {
     @FXML
     private Button btbusca;
     @FXML
-    private TableView<?> tv;
+    private TableView<Usuario> tv;
     @FXML
-    private TableColumn<?, ?> tcLogin;
+    private TableColumn tcLogin;
     @FXML
-    private TableColumn<?, ?> tcSenha;
+    private TableColumn tcSenha;
     @FXML
-    private TableColumn<?, ?> tcPermissao;
+    private TableColumn tcPermissao;
     @FXML
-    private TableColumn<?, ?> tcNome;
+    private TableColumn tcNome;
     @FXML
-    private TableColumn<?, ?> tcCpf;
+    private TableColumn tcCpf;
     @FXML
     private TextField tfcod;
     @FXML
@@ -95,7 +99,21 @@ public class TelaCadUsuarioController implements Initializable {
         estadoInicial();
         mascara();
         Carregadores.carregaPermissao(cbpermissao);
+        carregaTabela("");
 
+    }
+
+    private void carregaTabela(String filtro) {
+        CtrUsuario ctr = new CtrUsuario();
+        ArrayList<Usuario> usuarios = ctr.getUsuarios(filtro);
+        ObservableList<Usuario> modelo;
+        modelo = FXCollections.observableArrayList(usuarios);
+        tv.setItems(modelo);
+        
+        tcCpf.setCellValueFactory(new PropertyValueFactory("cpf"));
+        tcLogin.setCellValueFactory(new PropertyValueFactory("login"));
+        tcNome.setCellValueFactory(new PropertyValueFactory("nome"));
+        tcPermissao.setCellValueFactory(new PropertyValueFactory("permissao"));
     }
 
     //<editor-fold defaultstate="collapsed" desc="Estados de layout">
@@ -116,24 +134,27 @@ public class TelaCadUsuarioController implements Initializable {
     }
 
     private void estadoInicial() {
-        if (Acesso.getPermissao() == -1) {
-            //textfields
-            vboxdados.setDisable(true);
-            
-            //botões
-            btalterar.setDisable(true);
-            btapagar.setDisable(true);
-            btcancelar.setDisable(false);
-            btconfirmar.setDisable(true);
-            btnovo.setDisable(false);
-            btbusca.setDisable(true);
+        //if (Acesso.getPermissao() == -1) {
+        //textfields
+        vboxdados.setDisable(true);
 
-            //tabela e busca
-            vbBuscaTable.setDisable(true);
+        //botões
+        btalterar.setDisable(true);
+        btapagar.setDisable(true);
+        btcancelar.setDisable(false);
+        btconfirmar.setDisable(true);
+        btnovo.setDisable(false);
+        btbusca.setDisable(true);
 
-            //código
-            tfcod.setDisable(true);
-        }
+        //tabela e busca
+        vbBuscaTable.setDisable(true);
+
+        //código
+        tfcod.setDisable(true);
+
+        estadoInicialLabel();
+        estadoInicialTextField();
+        //}
 
     }
 
@@ -144,6 +165,7 @@ public class TelaCadUsuarioController implements Initializable {
         btconfirmar.setDisable(false);
         btnovo.setDisable(true);
         btbusca.setDisable(true);
+        vboxdados.setDisable(false);
     }
 
     /*Talvez n precise
@@ -157,22 +179,22 @@ public class TelaCadUsuarioController implements Initializable {
     }
      */
     private void estadoInicialLabel() {
-        lbcpf.setStyle("-fx-text-fill: ;");
-        lblogin.setStyle("-fx-text-fill: ;");
-        lbnome.setStyle("-fx-text-fill: ;");
-        lbpermissao.setStyle("-fx-text-fill: ;");
-        lbrg.setStyle("-fx-text-fill: ;");
-        lbsenha.setStyle("-fx-text-fill: ;");
-        lbtelefone.setStyle("-fx-text-fill: ;");
+        lbcpf.setStyle("-fx-text-fill: black;");
+        lblogin.setStyle("-fx-text-fill: black;");
+        lbnome.setStyle("-fx-text-fill: black;");
+        lbpermissao.setStyle("-fx-text-fill: black;");
+        lbrg.setStyle("-fx-text-fill: black;");
+        lbsenha.setStyle("-fx-text-fill: black;");
+        lbtelefone.setStyle("-fx-text-fill: black;");
     }
 
     private void estadoInicialTextField() {
-        tfcpf.setStyle("-fx-text-box-border: ;");
-        tflogin.setStyle("-fx-text-box-border: ;");
-        tfnome.setStyle("-fx-text-box-border: ;");
-        tfrg.setStyle("-fx-text-box-border: ;");
-        tfsenha.setStyle("-fx-text-box-border: ;");
-        tftelefone.setStyle("-fx-text-box-border: ;");
+        tfcpf.setStyle("-fx-border-width: 0;");
+        tflogin.setStyle("-fx-border-width: 0;");
+        tfnome.setStyle("-fx-border-width: 0;");
+        tfrg.setStyle("-fx-border-width: 0;");
+        tfsenha.setStyle("-fx-border-width: 0;");
+        tftelefone.setStyle("-fx-border-width: 0;");
     }
 //</editor-fold>
 
@@ -188,7 +210,7 @@ public class TelaCadUsuarioController implements Initializable {
             tflogin.setStyle("-fx-text-box-border: red;");
             flag = 1;
         } else {
-            if (new CtrUsuario().verificaUsuárioSenha(tflogin.getText(), "") != 1) {
+            if (new CtrUsuario().verificaUsuárioSenha(tflogin.getText(), "")) {
                 lblogin.setStyle("-fx-text-fill: red;");
                 tflogin.setStyle("-fx-text-box-border: red;");
                 JOptionPane.showMessageDialog(null, "Este login já existe! Tente outro.");
@@ -257,18 +279,37 @@ public class TelaCadUsuarioController implements Initializable {
     @FXML
     private void clkconfirmar(ActionEvent event) {
         if (verificação()) {
-            if (tfcod.getText().compareTo("") != 0) {
-                new CtrUsuario().gravar(0, tfnome.getText(),
-                        tfcpf.getText(), tfrg.getText(), tftelefone.getText(),
-                        tflogin.getText(), tfsenha.getText()); //verificar permissão
+            if (tfcod.getText().compareTo("") == 0) { //esta gravando 
+                new CtrUsuario().gravar(cbpermissao.getSelectionModel().getSelectedIndex(),
+                        tfnome.getText(), tfcpf.getText(), tfrg.getText(),
+                        tftelefone.getText(), tflogin.getText(),
+                        tfsenha.getText());
+            } else { //esta editando
+                new CtrUsuario().alterar(Integer.parseInt(tfcod.getText()),
+                        cbpermissao.getSelectionModel().getSelectedIndex(),
+                        tfnome.getText(), tfcpf.getText(), tfrg.getText(),
+                        tftelefone.getText(), tflogin.getText(),
+                        tfsenha.getText());
             }
         }
     }
 
     @FXML
     private void clkcancelar(ActionEvent event) {
+        limpaCampos();
+        estadoInicial();
+
+        /*
         JOptionPane.showMessageDialog(null, "Fechar tela. Tratar permissao");
+        if(Acesso.getPermissao()==-1)
+            JOptionPane.showMessageDialog(null, "fechar o sistema todo");
+        else
+            JOptionPane.showMessageDialog(null, tv);*/
     }
 
     //</editor-fold>
+    @FXML
+    private void clkteste(ActionEvent event) {
+        System.out.println(cbpermissao.getSelectionModel().getSelectedIndex());
+    }
 }

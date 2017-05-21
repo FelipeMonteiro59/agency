@@ -112,9 +112,8 @@ public class Usuario {
     //<editor-fold defaultstate="collapsed" desc="public Usuario get(String login)">
     public Usuario getByLogin(String login) {
         String sql = "select * from usuario where usu_login='" + login + "'";
-        if (login.isEmpty()) {
-            System.out.println("Login vazio!");
-        }
+        if (login.isEmpty()) //login vazio
+            return null;
         ResultSet rs = Banco.con.consultar(sql);
         try {
             if (rs.next()) {

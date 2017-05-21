@@ -1,6 +1,7 @@
 package agency.controllers;
 
 import agency.entity.Usuario;
+import java.util.ArrayList;
 
 public class CtrUsuario {
     //<editor-fold defaultstate="collapsed" desc="ENTITY VARS">
@@ -28,25 +29,24 @@ public class CtrUsuario {
         return u.excluir(cod);
     }
 
-    public int verificaUsuárioSenha(String login, String senha) {
+    public boolean verificaUsuárioSenha(String login, String senha) {
         Usuario u = new Usuario();
-        int flag;
         u = u.getByLogin(login);
-        if (u == null) {
-            flag = 1;
-        } else if (u.getSenha().compareTo(senha) != 0) {
-            flag = 2;
-        } else {
-            flag = 0;
+        if (u == null || u.getSenha().compareTo(senha) != 0) {
+            return false;
         }
-        return flag;
+        return true;
     }
 
-    public int getPermissao(String login){
+    public int getPermissao(String login) {
         return new Usuario().getByLogin(login).getPermissao();
     }
-    
-    public int getCod(String login){
+
+    public int getCod(String login) {
         return new Usuario().getByLogin(login).getCod();
+    }
+
+    public ArrayList<Usuario> getUsuarios(String filtro) {
+        return new Usuario().get(filtro);
     }
 }
