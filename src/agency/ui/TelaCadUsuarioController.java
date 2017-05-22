@@ -22,6 +22,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javax.swing.JOptionPane;
 
@@ -81,8 +82,6 @@ public class TelaCadUsuarioController implements Initializable {
     @FXML
     private TableColumn tcLogin;
     @FXML
-    private TableColumn tcSenha;
-    @FXML
     private TableColumn tcPermissao;
     @FXML
     private TableColumn tcNome;
@@ -96,20 +95,26 @@ public class TelaCadUsuarioController implements Initializable {
 //</editor-fold>
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        estadoInicial();
-        mascara();
         Carregadores.carregaPermissao(cbpermissao);
         carregaTabela("");
-
+        estadoInicial();
+        mascara();
+        /* if (Acesso.getPermissao() == -1) {
+            vbBuscaTable.setVisible(false);
+        } else {*/
+//            vbBuscaTable.setVisible(true);
+//            
+        //}
     }
 
     private void carregaTabela(String filtro) {
         CtrUsuario ctr = new CtrUsuario();
         ArrayList<Usuario> usuarios = ctr.getUsuarios(filtro);
-        ObservableList<Usuario> modelo;
-        modelo = FXCollections.observableArrayList(usuarios);
-        tv.setItems(modelo);
-        
+        if (!usuarios.isEmpty()) {
+            ObservableList<Usuario> modelo;
+            modelo = FXCollections.observableArrayList(usuarios);
+            tv.setItems(modelo);
+        }
         tcCpf.setCellValueFactory(new PropertyValueFactory("cpf"));
         tcLogin.setCellValueFactory(new PropertyValueFactory("login"));
         tcNome.setCellValueFactory(new PropertyValueFactory("nome"));
@@ -147,8 +152,7 @@ public class TelaCadUsuarioController implements Initializable {
         btbusca.setDisable(true);
 
         //tabela e busca
-        vbBuscaTable.setDisable(true);
-
+           vbBuscaTable.setDisable(true);
         //código
         tfcod.setDisable(true);
 
@@ -168,6 +172,7 @@ public class TelaCadUsuarioController implements Initializable {
         vboxdados.setDisable(false);
     }
 
+    //<editor-fold defaultstate"collapsde" desc="Talvez n precise">
     /*Talvez n precise
     private void estadoBusca() {
         btalterar.setDisable(false);
@@ -178,6 +183,8 @@ public class TelaCadUsuarioController implements Initializable {
         btbusca.setDisable(false);
     }
      */
+    //</editor-fold>
+    
     private void estadoInicialLabel() {
         lbcpf.setStyle("-fx-text-fill: black;");
         lblogin.setStyle("-fx-text-fill: black;");
@@ -307,9 +314,26 @@ public class TelaCadUsuarioController implements Initializable {
             JOptionPane.showMessageDialog(null, tv);*/
     }
 
-    //</editor-fold>
     @FXML
-    private void clkteste(ActionEvent event) {
-        System.out.println(cbpermissao.getSelectionModel().getSelectedIndex());
+    private void clkTabel(MouseEvent event) {
+        int selected = tv.getSelectionModel().getSelectedIndex();
+        
+        if (selected >= 0) {
+            CtrUsuario c = new CtrUsuario();
+            btalterar.setDisable(false);
+            btapagar.setDisable(false);
+            
+            c.newUsuario(tv.getItems().get(selected));
+            tfcpf.setText(c.getCpf());
+            tflogin.setText(c.getLogin());
+            tfnome.setText(c.getNome());
+            tfrg.setText(c.getRg());
+            tfsenha.setText(c.getSenha());
+            tftelefone.setText(c.getFone());
+            cbpermissao.getSelectionModel().select(c.getPermissao());
+        }
+
     }
+    //</editor-fold>
+
 }

@@ -5,6 +5,9 @@
         <group>
             <file>file:/F:/Agency/src/agency/ui/TelaLoginController.java</file>
             <file>file:/F:/Agency/src/agency/ui/TelaCadUsuarioController.java</file>
+            <file>file:/F:/Agency/src/agency/entity/Usuario.java</file>
+            <file>file:/F:/Agency/src/agency/controllers/CtrUsuario.java</file>
+            <file>file:/F:/Agency/src/agency/Agency.java</file>
         </group>
     </open-files>
 </project-private>

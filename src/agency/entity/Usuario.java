@@ -37,17 +37,55 @@ public class Usuario {
     }
     //</editor-fold>
     
-    public String getSenha(){
+    //<editor-fold defaultstate="collapsed" desc="GET SET">
+    public String getSenha() {
         return this.senha;
     }
-    
-    public int getPermissao(){
+
+    public int getPermissao() {
         return this.permissao;
     }
-    
-    public int getCod(){
+
+    public int getCod() {
         return this.cod;
     }
+    
+    public String getLogin(){
+        return this.login;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    public String getFone() {
+        return fone;
+    }
+
+    public void setFone(String fone) {
+        this.fone = fone;
+    }
+    //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="gravar()">
     public boolean gravar() {
@@ -113,7 +151,9 @@ public class Usuario {
     public Usuario getByLogin(String login) {
         String sql = "select * from usuario where usu_login='" + login + "'";
         if (login.isEmpty()) //login vazio
+        {
             return null;
+        }
         ResultSet rs = Banco.con.consultar(sql);
         try {
             if (rs.next()) {
@@ -128,9 +168,9 @@ public class Usuario {
         }
         return null;
     }
-    
-    //</editor-fold>
 
+    //</editor-fold>
+    
     public ArrayList<Usuario> get(String filtro) {
         String sql = "select * from usuario";
         if (!filtro.isEmpty()) {
@@ -139,12 +179,15 @@ public class Usuario {
         ArrayList<Usuario> a = new ArrayList();
         ResultSet rs = Banco.con.consultar(sql);
         try {
-            if (rs.next()) {
+            while (rs.next()) {
                 a.add(new Usuario(rs.getInt("usu_cod"),
                         rs.getInt("usu_permissao"), rs.getString("usu_nome"),
                         rs.getString("usu_cpf"), rs.getString("usu_rg"),
                         rs.getString("usu_fone"), rs.getString("usu_login"),
                         rs.getString("usu_senha")));
+            }
+            if (!a.isEmpty()) {
+                return a;
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

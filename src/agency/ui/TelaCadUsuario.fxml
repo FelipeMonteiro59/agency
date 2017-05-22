@@ -77,7 +77,7 @@
                         <HBox spacing="5.0">
                            <children>
                               <Label fx:id="lbpermissao" text="*Permissão:" />
-                              <ComboBox fx:id="cbpermissao" onAction="#clkteste" prefWidth="150.0" />
+                              <ComboBox fx:id="cbpermissao" prefWidth="150.0" />
                            </children>
                         </HBox>
                      </children>
@@ -112,10 +112,9 @@
                   <Button fx:id="btbusca" mnemonicParsing="false" text="Buscar" />
                </children>
             </HBox>
-            <TableView fx:id="tv" prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="tv" onMouseClicked="#clkTabel" prefHeight="200.0" prefWidth="200.0">
               <columns>
                 <TableColumn fx:id="tcLogin" prefWidth="75.0" text="Login" />
-                <TableColumn fx:id="tcSenha" prefWidth="75.0" text="Senha" />
                   <TableColumn fx:id="tcPermissao" prefWidth="75.0" text="Permissão" />
                   <TableColumn fx:id="tcNome" prefWidth="75.0" text="Nome" />
                   <TableColumn fx:id="tcCpf" prefWidth="75.0" text="CPF" />
