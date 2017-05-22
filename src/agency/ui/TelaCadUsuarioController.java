@@ -96,7 +96,7 @@ public class TelaCadUsuarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Carregadores.carregaPermissao(cbpermissao);
-        carregaTabela("");
+        carregaTabela("usu_cod != "+agency.Agency.a.getCod());
         estadoInicial();
         mascara();
         /* if (Acesso.getPermissao() == -1) {
@@ -108,9 +108,10 @@ public class TelaCadUsuarioController implements Initializable {
     }
 
     private void carregaTabela(String filtro) {
+
         CtrUsuario ctr = new CtrUsuario();
         ArrayList<Usuario> usuarios = ctr.getUsuarios(filtro);
-        if (!usuarios.isEmpty()) {
+        if (usuarios!=null /*!usuarios.isEmpty()*/) {
             ObservableList<Usuario> modelo;
             modelo = FXCollections.observableArrayList(usuarios);
             tv.setItems(modelo);
@@ -128,6 +129,7 @@ public class TelaCadUsuarioController implements Initializable {
     }
 
     private void limpaCampos() {
+        tfcod.setText("");
         tfcpf.setText("");
         tflogin.setText("");
         tfnome.setText("");
@@ -152,7 +154,7 @@ public class TelaCadUsuarioController implements Initializable {
         btbusca.setDisable(true);
 
         //tabela e busca
-           vbBuscaTable.setDisable(true);
+        //   vbBuscaTable.setDisable(true);
         //código
         tfcod.setDisable(true);
 
@@ -163,6 +165,7 @@ public class TelaCadUsuarioController implements Initializable {
     }
 
     private void estadoEdicao() {
+
         btalterar.setDisable(true);
         btapagar.setDisable(true);
         btcancelar.setDisable(false);
@@ -170,21 +173,9 @@ public class TelaCadUsuarioController implements Initializable {
         btnovo.setDisable(true);
         btbusca.setDisable(true);
         vboxdados.setDisable(false);
+
     }
 
-    //<editor-fold defaultstate"collapsde" desc="Talvez n precise">
-    /*Talvez n precise
-    private void estadoBusca() {
-        btalterar.setDisable(false);
-        btapagar.setDisable(false);
-        btcancelar.setDisable(false);
-        btconfirmar.setDisable(false);
-        btnovo.setDisable(false);
-        btbusca.setDisable(false);
-    }
-     */
-    //</editor-fold>
-    
     private void estadoInicialLabel() {
         lbcpf.setStyle("-fx-text-fill: black;");
         lblogin.setStyle("-fx-text-fill: black;");
@@ -202,6 +193,7 @@ public class TelaCadUsuarioController implements Initializable {
         tfrg.setStyle("-fx-border-width: 0;");
         tfsenha.setStyle("-fx-border-width: 0;");
         tftelefone.setStyle("-fx-border-width: 0;");
+        cbpermissao.setStyle("-fx-border-width: 0;");
     }
 //</editor-fold>
 
@@ -278,6 +270,17 @@ public class TelaCadUsuarioController implements Initializable {
     private void clkapagar(ActionEvent event) {
         if (JOptionPane.showConfirmDialog(null, "Certeza que deseja excluir este registro?") == 0) {
             //excluir
+            if (Integer.parseInt(tfcod.getText()) != agency.Agency.a.getCod()) {
+                CtrUsuario c = new CtrUsuario();
+                if (c.excluir(Integer.parseInt(tfcod.getText()))) {
+                    JOptionPane.showMessageDialog(null, "Registro excluído com sucesso!");
+                    carregaTabela("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Falha na exclusão do registro!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Você não pode excluir o usuário com o qual está logado!");
+            }
         } else {
             //cancelar
         }
@@ -298,6 +301,7 @@ public class TelaCadUsuarioController implements Initializable {
                         tftelefone.getText(), tflogin.getText(),
                         tfsenha.getText());
             }
+            carregaTabela("");
         }
     }
 
@@ -305,25 +309,19 @@ public class TelaCadUsuarioController implements Initializable {
     private void clkcancelar(ActionEvent event) {
         limpaCampos();
         estadoInicial();
-
-        /*
-        JOptionPane.showMessageDialog(null, "Fechar tela. Tratar permissao");
-        if(Acesso.getPermissao()==-1)
-            JOptionPane.showMessageDialog(null, "fechar o sistema todo");
-        else
-            JOptionPane.showMessageDialog(null, tv);*/
     }
 
     @FXML
     private void clkTabel(MouseEvent event) {
         int selected = tv.getSelectionModel().getSelectedIndex();
-        
+
         if (selected >= 0) {
             CtrUsuario c = new CtrUsuario();
             btalterar.setDisable(false);
             btapagar.setDisable(false);
-            
+
             c.newUsuario(tv.getItems().get(selected));
+            tfcod.setText(c.getCod() + "");
             tfcpf.setText(c.getCpf());
             tflogin.setText(c.getLogin());
             tfnome.setText(c.getNome());

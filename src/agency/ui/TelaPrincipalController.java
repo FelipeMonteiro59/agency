@@ -38,7 +38,7 @@ public class TelaPrincipalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        switch(Acesso.getPermissao()){
+        switch(agency.Agency.a.getPermissao()){
             case 0://permissão 0
                  
                 break;
